@@ -6,6 +6,34 @@ if (!isset($_SESSION['admin_id'])) {
     header('Location: index.php');
     exit();
 }
+// Si le formulaire d'ajout d'étudiant est soumis
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $date_naissance = $_POST['date_naissance'];
+    $email = $_POST['email'];
+    $telephone = $_POST['telephone'];
+    $niveau = $_POST['niveau'];
+
+    // Génération d'un matricule unique
+    $matricule = strtoupper(substr($nom, 0, 2)) . date('Y') . rand(100, 999);
+
+    // Insertion dans la base de données
+    $stmt = $pdo->prepare("INSERT INTO students (nom, prenom, date_naissance, email, telephone, niveau, matricule) VALUES (:nom, :prenom, :date_naissance, :email, :telephone, :niveau, :matricule)");
+    $stmt->execute([
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'date_naissance' => $date_naissance,
+        'email' => $email,
+        'telephone' => $telephone,
+        'niveau' => $niveau,
+        'matricule' => $matricule
+    ]);
+
+    // Redirection pour éviter la soumission multiple du formulaire
+    header('Location: list_student.php');
+    exit();
+}
 
 // Récupérer les étudiants non archivés
 $stmt = $pdo->prepare("SELECT * FROM etudiants WHERE archived = 0");

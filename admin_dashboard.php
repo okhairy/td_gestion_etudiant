@@ -11,8 +11,7 @@ if (!isset($_SESSION['admin_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Tableau de bord</title>
-   <link rel="stylesheet" href="style.css">
-</head>
+   <link rel="stylesheet" href="style.css</head>
 <body>
     <div class="container">
         <h2>Tableau de bord de l'administrateur</h2>
