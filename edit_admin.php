@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Modifier Administrateur</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inscrire.css">
 </head>
 <body>
     <h2>Modifier Administrateur</h2>
@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
         <p style="color: red;"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
-    <form action="edit_admin.php?id=<?= htmlspecialchars($id) ?>" method="POST">
+    <form  id ="edit"action="edit_admin.php?id=<?= htmlspecialchars($id) ?>" method="POST">
         <label>Nom :</label>
         <input type="text" name="nom" value="<?= htmlspecialchars($admin['nom']) ?>" required>
         

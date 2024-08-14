@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
             'id' => $id
         ]);
 
-        header('Location: student_list.php');
+        header('Location: list_student.php');
         exit();
     }
 } else {

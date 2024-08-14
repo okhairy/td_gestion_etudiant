@@ -39,5 +39,6 @@ $admins = $stmt->fetchAll();
             </tr>
         <?php endforeach; ?>
     </table>
+    <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
 </body>
 </html>

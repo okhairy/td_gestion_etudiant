@@ -25,12 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Connexion Administrateur</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inscrire.css">
 </head>
 <body>
     <h2>Connexion Administrateur</h2>
     <?php if (isset($error)) echo "<p>$error</p>"; ?>
-    <form action="index.php" method="POST">
+    <form  id="login" action="index.php" method="POST">
         <label>Email :</label>
         <input type="email" name="email" required>
         <label>Mot de passe :</label>
