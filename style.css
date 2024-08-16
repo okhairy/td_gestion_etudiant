@@ -8,7 +8,7 @@ body {
 }
 
 /* Conteneur principal du tableau de bord */
-.dashboard {
+.dashboard ,#login{
     width: 80%;
     max-width: 1000px;
     margin: 50px auto;
@@ -136,3 +136,76 @@ table tr:hover {
 .btn-back:hover {
     background-color: #004d40;
 }
+h2,#login{
+    text-align: center;
+}
+/* Style général pour les boutons */
+a[class^="btn-"] {
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff; /* Texte blanc */
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+/* Bouton Modifier - Fond bleu */
+.btn-modifier {
+    background-color: #007bff; /* Bleu */
+}
+
+.btn-modifier:hover {
+    background-color: #0056b3; /* Bleu foncé lors du survol */
+}
+
+/* Bouton Archiver - Fond orange */
+.btn-archiver {
+    background-color: #474747; /* Orange */
+}
+
+.btn-archiver:hover {
+    background-color: gray; /* Orange foncé lors du survol */
+}
+
+/* Bouton Désarchiver - Fond vert */
+.btn-unarchive {
+    background-color: #4CAF50; /* Vert */
+}
+
+.btn-unarchive:hover {
+    background-color: #388E3C; /* Vert foncé lors du survol */
+}
+/* Zone de recherche */
+.search-form {
+    width: 100%;
+    max-width: 600px; /* Limiter la largeur du formulaire */
+    margin: 20px auto; /* Centrer horizontalement */
+    padding: 10px;
+    background: #ffffff; /* Fond du formulaire */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.search-form input[type="text"] {
+    width: calc(100% - 120px); /* Ajuster la largeur de l'input */
+    padding: 10px;
+    margin-right: 10px;
+}
+
+.search-form button {
+    width: 100px;
+    padding: 10px;
+    background-color: #00796b;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background-color: #004d40;
+}
+
+/*

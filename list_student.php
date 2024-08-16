@@ -25,11 +25,21 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
     exit();
 }
 
-// Récupérer la liste des étudiants non archivés
-$students = $pdo->query("SELECT * FROM etudiants WHERE archived = 0")->fetchAll();
+// Traitement de la recherche
+$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-// Récupérer la liste des étudiants archivés
-$archived_students = $pdo->query("SELECT * FROM etudiants WHERE archived = 1")->fetchAll();
+// Préparer les requêtes avec recherche
+$query = "SELECT * FROM etudiants WHERE archived = 0 AND (nom LIKE :search OR prenom LIKE :search OR email LIKE :search)";
+$stmt = $pdo->prepare($query);
+$stmt->execute(['search' => "%$search%"]);
+$students = $stmt->fetchAll();
+$students_count = count($students); // Nombre d'étudiants non archivés
+
+$query_archived = "SELECT * FROM etudiants WHERE archived = 1 AND (nom LIKE :search OR prenom LIKE :search OR email LIKE :search)";
+$stmt_archived = $pdo->prepare($query_archived);
+$stmt_archived->execute(['search' => "%$search%"]);
+$archived_students = $stmt_archived->fetchAll();
+$archived_students_count = count($archived_students); // Nombre d'étudiants archivés
 
 $L1_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + COALESCE(noteM3, 0) + COALESCE(noteM4, 0)) / 4 as moyenne FROM etudiants WHERE niveau= 'L1' AND archived = 0 ORDER BY moyenne DESC")->fetchAll();
 $L2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + COALESCE(noteM3, 0) + COALESCE(noteM4, 0)) / 4 as moyenne FROM etudiants WHERE niveau= 'L2' AND archived = 0 ORDER BY moyenne DESC")->fetchAll();
@@ -46,7 +56,14 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h2>Recherche d'étudiants</h2>
+    <form method="get" action="" class="search-form">
+        <input type="text" name="search" placeholder="Rechercher par nom, prénom ou email" value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>">
+        <button type="submit">Rechercher</button>
+    </form>
+
     <h2>Liste des étudiants non archivés</h2>
+    <p>Nombre d'étudiants non archivés : <?= $students_count ?></p>
     <div class="list-container">
         <table class="non-archived">
             <tr>
@@ -65,9 +82,10 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
                 <td><?= htmlspecialchars($student['telephone']) ?></td>
                 <td><?= htmlspecialchars($student['matricule']) ?></td>
                 <td>
-                    <!-- Liens pour modifier et archiver l'étudiant -->
-                    <a href="edit_student.php?id=<?= $student['id'] ?>">Modifier</a> |
-                    <a href="list_student.php?action=archive&id=<?= $student['id'] ?>">Archiver</a>
+                    <!-- Lien pour modifier -->
+                    <a href="edit_student.php?id=<?= $student['id'] ?>" class="btn-modifier">Modifier</a> |
+                    <!-- Lien pour archiver -->
+                    <a href="list_student.php?action=archive&id=<?= $student['id'] ?>" class="btn-archiver">Archiver</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -75,6 +93,7 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
     </div>
 
     <h2>Liste des étudiants archivés</h2>
+    <p>Nombre d'étudiants archivés : <?= $archived_students_count ?></p>
     <div class="list-container">
         <table class="archived">
             <tr>
@@ -94,18 +113,13 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
                 <td><?= htmlspecialchars($archived_student['matricule']) ?></td>
                 <td>
                     <!-- Lien pour désarchiver l'étudiant -->
-                    <a class="unarchive" href="list_student.php?action=unarchive&id=<?= $archived_student['id'] ?>">Désarchiver</a>
+                    <a class="btn-unarchive" href="list_student.php?action=unarchive&id=<?= $archived_student['id'] ?>">Désarchiver</a>
                 </td>
             </tr>
             <?php endforeach; ?>
         </table>
-        
-     </div>
-
-    
-            
-       
-        <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
     </div>
+
+    <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
 </body>
 </html>
