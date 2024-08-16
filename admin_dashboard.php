@@ -22,6 +22,7 @@ if (!isset($_SESSION['admin_id'])) {
             <li><a href="admin_list.php">Gérer les administrateurs</a></li>
             <li><a href="inscrire_student.php">inscrire un etudiant</a></li>
             <li><a href="add_admin.php">ajouter un administrateur</a></li>
+            <li><a href="add_note.php" >Entrer les notes d'un etudiant</a></li>
             <li><a href="logout.php" class="logout">Déconnexion</a></li>
         </ul>
         </div>
