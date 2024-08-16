@@ -15,6 +15,7 @@ if (!isset($_SESSION['admin_id'])) {
    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <div class="dashboard">
         <h2>Tableau de bord de l'administrateur</h2>
         <ul>

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Connexion Administrateur</title>
-    <link rel="stylesheet" href="inscrire.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Connexion Administrateur</h2>

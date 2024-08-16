@@ -57,7 +57,7 @@ if (isset($_GET['id'])) {
 <head>
     <meta charset="UTF-8">
     <title>Modifier Administrateur</title>
-    <link rel="stylesheet" href="inscrire.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Modifier Administrateur</h2>

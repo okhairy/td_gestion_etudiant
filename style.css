@@ -1,263 +1,138 @@
-/* Style global pour le corps de la page */
+/* Général */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background: #e0f7fa; /* Fond général */
+    color: #333;
 }
 
-/* Style pour les en-têtes */
-h1, h2, h3 {
-    color: #2980b9;
-    margin-top: 20px;
+/* Conteneur principal du tableau de bord */
+.dashboard {
+    width: 80%;
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #ffffff; /* Fond du tableau de bord */
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-/* Conteneur central pour centrer le contenu */
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
+/* En-tête du tableau de bord */
+h2 {
+    font-size: 28px;
+    color: #00796b; /* Couleur du titre */
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
-/* Style pour les liens de navigation */
+/* Liste des liens */
 ul {
     list-style: none;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    margin: 0;
 }
 
-ul li {
-    margin: 0 15px;
+li {
+    margin: 15px 0;
 }
 
-ul li a {
-    text-decoration: none;
-    color: #3498db;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-ul li a:hover {
-    color: #2980b9;
-}
-
-/* Style des formulaires */
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-}
-
-form input,
-form select,
-form button {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-form input[type="text"],
-form input[type="email"],
-form input[type="date"],
-form select {
-    width: calc(50% - 20px);
-}
-
-form button {
-    background-color: #3498db;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border: none;
-    width: 60%;
-}
-
-form button:hover {
-    background-color: #2980b9;
-}
-
-/* Style des tableaux */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 30px;
-}
-
-table, th, td {
-    border: 1px solid #ddd;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-/* Style pour les lignes des étudiants archivés et non archivés */
-.archived {
-    background-color: #f8d7da;
-}
-
-.non-archived {
-    background-color: #d4edda;
-}
-
-/* Style des boutons d'action */
-.action-buttons a {
-    padding: 8px 12px;
-    margin-right: 5px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-.action-buttons a.edit {
-    background-color: #3498db;
-}
-
-.action-buttons a.edit:hover {
-    background-color: #2980b9;
-}
-
-.action-buttons a.archive {
-    background-color: #e74c3c;
-}
-
-.action-buttons a.archive:hover {
-    background-color: #c0392b;
-}
-
-.action-buttons a.unarchive {
-    background-color: #2ecc71;
-}
-
-.action-buttons a.unarchive:hover {
-    background-color: #27ae60;
-}
-
-/* Style du bouton de déconnexion */
-.logout-button {
+a {
     display: block;
-    margin: 30px auto;
-    padding: 10px 20px;
-    background-color: #e74c3c;
-    color: white;
-    text-align: center;
+    padding: 15px;
+    color: #ffffff;
+    background-color: #00796b; /* Couleur de fond des liens */
+    text-decoration: none;
+    font-size: 18px;
     border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.logout-button:hover {
-    background-color: #c0392b;
-}yle de base des boutons */
-.button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+a:hover {
+    background-color: #004d40; /* Couleur de fond au survol */
+    transform: translateY(-2px);
 }
 
-/* Effet de survol */
-.button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-/* Effet de clic */
-.button:active {
-    background-color: #003d7a;
-    transform: scale(0.98);
-}
-
-/* Style du tableau de bord */
-.dashboard {
-   
+/* Formulaire */
+.form-container {
+    width: 90%;
+    max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    background: white;
+    background: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Espacement en haut et en bas du titre */
-.dashboard h2 {
-    margin-top: 0;
-    margin-bottom: 20px; 
-    color: #0a0e0e;
-    text-align: center; /* Centrer le titre */
+form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #00796b;
 }
 
-/* Liste sans puces */
-.dashboard ul {
-    list-style: none;
-    padding: 0;
-    margin: 0; /* Suppression des marges */
-}
-
-/* Espacement entre chaque élément de la liste */
-.dashboard ul li {
-    margin-bottom: 20px; /* Espace entre les éléments */
-}
-
-/* Style des liens */
-.dashboard ul li a {
-    display: block; /* Le lien prend toute la largeur disponible */
-    padding: 15px; /* Augmentation du padding pour plus d'espace */
-    background: rgba(13, 16, 214, 0.705);
-    color: white;
-    text-decoration: none;
+form input, form select, form button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #00796b;
     border-radius: 4px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    text-align: center; /* Centrer le texte à l'intérieur du lien */
+    box-sizing: border-box;
 }
 
-/* Changement de couleur et léger agrandissement au survol */
-.dashboard ul li a:hover {
-    background-color: black;
-    transform: scale(1.02);
+form button {
+    background-color: #00796b;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
 }
 
-/* Changement de couleur et légère réduction lors du clic */
-.dashboard ul li a:active {
-    background-color: #bdbebe;
-    transform: scale(0.98);
+form button:hover {
+    background-color: #004d40;
 }
 
+/* Tableaux */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
 
-/* Style pour le bouton de retour */
+table th, table td {
+    padding: 12px;
+    border: 1px solid #00796b;
+    text-align: left;
+}
+
+table th {
+    background-color: #004d40;
+    color: #ffffff;
+}
+
+table tr:nth-child(even) {
+    background-color: #e0f2f1;
+}
+
+table tr:hover {
+    background-color: #b2dfdb;
+}
+
+/* Boutons de retour */
 .btn-back {
     display: inline-block;
     padding: 10px 20px;
-    margin-top: 20px;
-    background-color: #970a1d;
-    color: white;
-    text-align: center;
-    border-radius: 4px;
+    background-color: #00796b;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
     text-decoration: none;
     font-size: 16px;
-    width: 15%;
+    cursor: pointer;
+    margin-top: 20px;
 }
 
 .btn-back:hover {
-    background-color: #4d0b11;
+    background-color: #004d40;
 }
