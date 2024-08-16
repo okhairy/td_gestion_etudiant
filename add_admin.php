@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un administrateur</title>
-    <link rel="stylesheet" href="inscrire.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h2>Ajouter un administrateur</h2>

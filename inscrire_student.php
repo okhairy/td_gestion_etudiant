@@ -1,4 +1,9 @@
 <?php
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include 'functions.php';
 session_start();
 
@@ -87,6 +92,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <option value="M1">M1</option>
                 <option value="M2">M2</option>
             </select>
+            <label for="matricule">matricule :</label>
+            <input type="text" id="matricule" name="matricule" placeholder="matricule" required>
             
             <button type="submit">Ajouter</button>
         </form>
