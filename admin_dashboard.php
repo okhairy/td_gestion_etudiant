@@ -28,7 +28,6 @@ $nom = $_SESSION['nom'];
             <li><a href="inscrire_student.php">Inscrire un étudiant</a></li>
             <li><a href="add_admin.php">Ajouter un administrateur</a></li>
             <li><a href="list_etudiants.php">Lister par ordre de mérite</a></li>
-            <li><a href="absence_list.php">Voir les absences</a></li>
             <li><a href="logout.php" class="logout">Déconnexion</a></li>
         </ul>
     </div>
