@@ -51,7 +51,7 @@ if (isset($_GET['id'])) {
 </head>
 <body>
     <h2>Modifier étudiant</h2>
-    <form action="edit_student.php?id=<?= $id ?>" method="POST">
+    <form action="edit_student.php?id=<?= $id ?>" method="POST" id="editer">
         <label>Nom :</label>
         <input type="text" name="nom" value="<?= htmlspecialchars($student['nom']) ?>" required>
         <label>Prénom :</label>

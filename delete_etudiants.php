@@ -1,6 +1,7 @@
 <?php
 include 'functions.php';
 session_start();
+
 if (!isset($_SESSION['admin_id'])) {
     header('Location: index.php');
     exit();
@@ -9,17 +10,14 @@ if (!isset($_SESSION['admin_id'])) {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    $stmt = $pdo->prepare("DELETE FROM administrateurs WHERE id = :id");
+    // Préparer et exécuter la requête de suppression
+    $stmt = $pdo->prepare("DELETE FROM etudiants WHERE id = :id");
     $stmt->execute(['id' => $id]);
 
-    header('Location: admin_list.php');
+    // Rediriger après la suppression
+    header('Location: list_student.php');
     exit();
 } else {
     die("ID non spécifié.");
 }
-
-
-
-
-
 ?>

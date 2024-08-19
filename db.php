@@ -1,7 +1,7 @@
 <?php
 // Déclaration des variables de connexion
 $host = 'localhost';         // Nom de l'hôte de la base de données (ici, le serveur local)
-$dbname = 'Administration'; // Nom de la base de données
+$dbname = 'Gestion_etudiants'; // Nom de la base de données
 $user = 'root';              // Nom d'utilisateur pour accéder à la base de données (par défaut, 'root' pour un serveur local)
 $password = '';              // Mot de passe pour accéder à la base de données (par défaut, vide pour un serveur local)
 

@@ -33,8 +33,10 @@ $admins = $stmt->fetchAll();
                 <td><?= htmlspecialchars($admin['prenom']) ?></td>
                 <td><?= htmlspecialchars($admin['email']) ?></td>
                 <td>
-                    <a href="edit_admin.php?id=<?= $admin['id'] ?>">Modifier</a>
-                    <a href="delete.php?id=<?= $admin['id'] ?>">Supprimer</a>
+                    <a href="edit_admin.php?id=<?= $admin['id'] ?>" class="btn-modifier">Modifier</a>
+                    <a href="delete.php?id=<?= $admin['id'] ?>&type=admin" 
+             onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet administrateur ?');" class="btn-supprimer">Supprimer</a>
+
                 </td>
             </tr>
         <?php endforeach; ?>

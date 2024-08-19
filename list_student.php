@@ -67,7 +67,8 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
     <div class="list-container">
         <table class="non-archived">
             <tr>
-                <th>Nom</th>
+                <th>ID</th>
+               <th>Nom</th>
                 <th>Prénom</th>
                 <th>Email</th>
                 <th>Téléphone</th>
@@ -76,6 +77,7 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
             </tr>
             <?php foreach ($students as $student): ?>
             <tr>
+                <td><?= htmlspecialchars($student['id']) ?></td>
                 <td><?= htmlspecialchars($student['nom']) ?></td>
                 <td><?= htmlspecialchars($student['prenom']) ?></td>
                 <td><?= htmlspecialchars($student['email']) ?></td>
@@ -85,7 +87,17 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
                     <!-- Lien pour modifier -->
                     <a href="edit_student.php?id=<?= $student['id'] ?>" class="btn-modifier">Modifier</a> |
                     <!-- Lien pour archiver -->
-                    <a href="list_student.php?action=archive&id=<?= $student['id'] ?>" class="btn-archiver">Archiver</a>
+                    <a href="list_student.php?action=archive&id=<?= $student['id'] ?>"   class="btn-archiver"
+                     onclick="return confirm('Êtes-vous sûr de vouloir archiver cet étudiant ?');"> Archiver </a>
+  
+  
+                    <a href="add_note.php?id=<?= $student['id'] ?>" class="btn-notes">Donner des notes</a>
+                   
+                    <a href="add_absence.php?id=<?= $student['id'] ?>" class="btn-absence">Marquer une absence</a>
+        
+
+            
+                    
                 </td>
             </tr>
             <?php endforeach; ?>

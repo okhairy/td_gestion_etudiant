@@ -12,12 +12,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($admin && verifyPassword($password, $admin['password'])) {
         $_SESSION['admin_id'] = $admin['id'];
+        $_SESSION['prenom'] = $admin['prenom'];
+        $_SESSION['nom'] = $admin['nom'];
         header('Location: admin_dashboard.php');
         exit();
     } else {
         $error = "Email ou mot de passe incorrect.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -30,12 +33,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h2>Connexion Administrateur</h2>
     <?php if (isset($error)) echo "<p>$error</p>"; ?>
-    <form  id="login" action="index.php" method="POST">
+    <form id="login" action="index.php" method="POST">
         <label>Email :</label>
         <input type="email" name="email" required>
-        <label>Mot de passe :</label>
-        <input type="password" name="password" required>
+
+        <div>
+            <label>Mot de passe :</label>
+            <input type="password" id="password" name="password" required>
+            
+           
+        </div>
+
         <button type="submit">Se connecter</button>
     </form>
+
+    <script src="script.js"></script>
 </body>
 </html>

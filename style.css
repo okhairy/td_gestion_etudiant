@@ -17,6 +17,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
+    
 }
 
 /* En-tête du tableau de bord */
@@ -55,7 +56,7 @@ a:hover {
 }
 
 /* Formulaire */
-.form-container {
+.form-container,#edit ,#editer, #absence, #note {
     width: 90%;
     max-width: 600px;
     margin: 20px auto;
@@ -151,9 +152,10 @@ a[class^="btn-"] {
 }
 
 /* Bouton Modifier - Fond bleu */
-.btn-modifier {
+.btn-modifier, .b {
     background-color: #007bff; /* Bleu */
 }
+
 
 .btn-modifier:hover {
     background-color: #0056b3; /* Bleu foncé lors du survol */
@@ -175,6 +177,23 @@ a[class^="btn-"] {
 
 .btn-unarchive:hover {
     background-color: #388E3C; /* Vert foncé lors du survol */
+}
+.btn-notes {
+    background-color:  #00ced1;
+}
+
+
+.btn-notes:hover {
+    background-color: #08d4e2;
+}
+
+
+.btn-absence{
+    background-color:   #ff69b4;
+}
+
+.btn-absence:hover {
+    background-color: pink;
 }
 /* Zone de recherche */
 .search-form {
@@ -208,4 +227,24 @@ a[class^="btn-"] {
     background-color: #004d40;
 }
 
-/*
+
+.password-field {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.password-field input {
+    padding-right: 30px; /* Espace pour l'icône */
+}
+
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+}
+
+
+
