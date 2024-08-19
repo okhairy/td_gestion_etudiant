@@ -178,33 +178,6 @@ a[class^="btn-"] {
 .btn-unarchive:hover {
     background-color: #388E3C; /* Vert foncé lors du survol */
 }
-<<<<<<< HEAD
-
-.btn-supprimer {
-    background-color: #943510; /* ROUGR */
-}
-
-.btn-supprimer:hover {
-    background-color: #a13b0b; /* Vert foncé lors du survol */
-=======
-.btn-notes {
-    background-color:  #00ced1;
-}
-
-
-.btn-notes:hover {
-    background-color: #08d4e2;
-}
-
-
-.btn-absence{
-    background-color:   #ff69b4;
-}
-
-.btn-absence:hover {
-    background-color: pink;
->>>>>>> 70eb2a0a858fa3a31671c74a2f0cda2aaf873238
-}
 /* Zone de recherche */
 .search-form {
     width: 100%;
