@@ -66,7 +66,7 @@ if (isset($_GET['id'])) {
         <p style="color: red;"><?= htmlspecialchars($error) ?></p>
     <?php endif; ?>
 
-    <form  id ="edit"action="edit_admin.php?id=<?= htmlspecialchars($id) ?>" method="POST">
+    <form  id ="edit"action="edit_admin.php?id=<?= htmlspecialchars($id) ?>" method="POST" >
         <label>Nom :</label>
         <input type="text" name="nom" value="<?= htmlspecialchars($admin['nom']) ?>" required>
         

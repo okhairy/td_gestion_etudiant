@@ -2,16 +2,14 @@
 include 'db.php';
 session_start();
 
+// Vérifier si l'utilisateur est connecté en tant qu'administrateur
 if (!isset($_SESSION['admin_id'])) {
     header('Location: index.php');
     exit();
 }
 
-$absences = $pdo->query("
-    SELECT etudiants.prenom, etudiants.nom, absences.date_absence, absences.motif 
-    FROM absences
-    JOIN etudiants ON absences.etudiant_id = etudiants.id
-")->fetchAll(PDO::FETCH_ASSOC);
+// Récupérer les informations sur les absences
+$etudiants = $pdo->query("SELECT nom, prenom, date_absence, motif, nombre_absences FROM etudiants")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -26,24 +24,26 @@ $absences = $pdo->query("
     <table>
         <thead>
             <tr>
-                <th>Prénom</th>
                 <th>Nom</th>
-                <th>Date</th>
-                <th>Motif</th>
+                <th>Prénom</th>
+                <th>Dernière date d'absence</th>
+                <th>Dernier motif</th>
+                <th>Nombre total d'absences</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($absences as $absence): ?>
+            <?php foreach ($etudiants as $etudiant): ?>
                 <tr>
-                    <td><?= htmlspecialchars($absence['prenom']) ?></td>
-                    <td><?= htmlspecialchars($absence['nom']) ?></td>
-                    <td><?= htmlspecialchars($absence['date_absence']) ?></td>
-                    <td><?= htmlspecialchars($absence['motif']) ?></td>
+                    <td><?= htmlspecialchars($etudiant['nom']) ?></td>
+                    <td><?= htmlspecialchars($etudiant['prenom']) ?></td>
+                    <td><?= htmlspecialchars($etudiant['date_absence']) ?></td>
+                    <td><?= htmlspecialchars($etudiant['motif']) ?></td>
+                    <td><?= htmlspecialchars($etudiant['nombre_absences']) ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
 
-    <button onclick="window.location.href='admin_dashboard.php'">Retour au tableau de bord</button>
+    <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
 </body>
 </html>

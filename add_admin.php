@@ -19,15 +19,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $prenom = $_POST['prenom'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $role = $_POST['role'];  // Nouveau champ pour le rôle
+    $confirm_password = $_POST['confirm_password'];
+    $role = $_POST['role'];
 
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "L'adresse email n'est pas valide.";
     }
 
     // Validation des données
-    if (empty($nom) || empty($prenom) || empty($email) || empty($password) || !is_numeric($role)) {
+    if (empty($nom) || empty($prenom) || empty($email) || empty($password) || empty($confirm_password) || !is_numeric($role)) {
         $error = "Tous les champs doivent être remplis et le rôle doit être un nombre valide.";
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        // Vérifie si l'email a un format valide
+        $error = "Le format de l'email est invalide.";
+    } elseif ($password !== $confirm_password) {
+        // Vérifie si les mots de passe correspondent
+        $error = "Les mots de passe ne correspondent pas.";
     } else {
         // Vérifie si l'email est déjà utilisé
         $stmt = $pdo->prepare("SELECT COUNT(*) FROM administrateurs WHERE email = :email");
@@ -64,6 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Ajouter un administrateur</title>
     <link rel="stylesheet" href="style.css">
+    
 </head>
 <body>
     <h2>Ajouter un administrateur</h2>
@@ -75,12 +83,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="nom" placeholder="Nom" required>
             <input type="text" name="prenom" placeholder="Prénom" required>
             <input type="email" name="email" placeholder="Email" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <div class="password-field">
+                <input type="password" id="password" name="password" placeholder="Mot de passe" required>
+                <span id="togglePassword" class="toggle-password">👁️‍🗨️</span>
+            </div>
+            <div class="password-field">
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmer le mot de passe" required>
+                <span id="toggleConfirmPassword" class="toggle-password">👁️‍🗨️</span>
+            </div>
             <input type="number" name="role" placeholder="Rôle (entier)" required min="0">
             <button type="submit">Ajouter</button>
         </form>
         <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
-
     </div>
+
+    <script src="script.js"></script>
+        
+   
 </body>
 </html>

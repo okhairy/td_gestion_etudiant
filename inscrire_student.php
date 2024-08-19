@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include 'functions.php';
+include 'db.php';
 session_start();
 
 if (!isset($_SESSION['admin_id'])) {
@@ -28,34 +28,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $age = $today->diff($date_naissance_obj)->y;
 
     if ($age < 18) {
-        $error = "L'étudiant doit avoir au moins 18 ans.";
-    } else {
+        $_SESSION['error_message'] = "L'étudiant doit avoir au moins 18 ans.";
+        header('Location: inscrire_student.php');
+        exit();
+    } 
 
-    // Validation du numéro de téléphone (doit contenir exactement 9 chiffres)
-    if (!preg_match('/^\d{9}$/', $telephone)) {
-        $error = "Le numéro de téléphone doit comporter exactement 9 chiffres.";
-    } else {
-
-        // Génération d'un matricule unique
-        $matricule = strtoupper(substr($nom, 0, 2)) . date('Y') . rand(100, 999);
-
-        // Insertion dans la base de données
-        $stmt = $pdo->prepare("INSERT INTO etudiants (nom, prenom, date_naissance, email, telephone, niveau, matricule) VALUES (:nom, :prenom, :date_naissance, :email, :telephone, :niveau, :matricule)");
-        $stmt->execute([
-            'nom' => $nom,
-            'prenom' => $prenom,
-            'date_naissance' => $date_naissance,
-            'email' => $email,
-            'telephone' => $telephone,
-            'niveau' => $niveau,
-            'matricule' => $matricule
-        ]);
-
-        // Redirection après l'ajout
-        header('Location: list_student.php');
+    // Validation du format de l'email
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error_message'] = "Le format de l'email est invalide.";
+        header('Location: inscrire_student.php');
         exit();
     }
-}
+
+    // Validation du numéro de téléphone
+    if (!preg_match('/^(77|78|76|70|75)\d{7}$/', $telephone)) {
+        $_SESSION['error_message'] = "Le numéro de téléphone doit commencer par 77, 78, 76, 70 ou 75 et contenir exactement 9 chiffres.";
+        header('Location: inscrire_student.php');
+        exit();
+    } 
+
+    // Vérifier si l'email est déjà utilisé
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM etudiants WHERE email = :email");
+    $stmt->execute(['email' => $email]);
+    if ($stmt->fetchColumn() > 0) {
+        $_SESSION['error_message'] = "Cet email est déjà utilisé.";
+        header('Location: inscrire_student.php');
+        exit();
+    }
+
+    // Vérifier si le téléphone est déjà utilisé
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM etudiants WHERE telephone = :telephone");
+    $stmt->execute(['telephone' => $telephone]);
+    if ($stmt->fetchColumn() > 0) {
+        $_SESSION['error_message'] = "Ce numéro de téléphone est déjà utilisé.";
+        header('Location: inscrire_student.php');
+        exit();
+    }
+
+    // Génération d'un matricule unique basé sur l'année en cours et un nombre aléatoire
+    $matricule = strtoupper(substr($nom, 0, 2)) . date('Y') . rand(100, 999);
+
+    // Insertion dans la base de données
+    $stmt = $pdo->prepare("INSERT INTO etudiants (nom, prenom, date_naissance, email, telephone, niveau, matricule) VALUES (:nom, :prenom, :date_naissance, :email, :telephone, :niveau, :matricule)");
+    $stmt->execute([
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'date_naissance' => $date_naissance,
+        'email' => $email,
+        'telephone' => $telephone,
+        'niveau' => $niveau,
+        'matricule' => $matricule
+    ]);
+
+    // Message de succès et redirection
+    $_SESSION['success_message'] = "Étudiant ajouté avec succès.";
+    header('Location: list_student.php');
+    exit();
 }
 ?>
 
@@ -69,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
     <h2 id="baisse">Ajouter un étudiant</h2>
     <div class="form-container">
-        <form action="inscrire_student.php" method="POST">
+        <form action="" method="POST">
             <label for="nom">Nom :</label>
             <input type="text" id="nom" name="nom" placeholder="Nom" required>
             
@@ -93,15 +121,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <option value="M1">M1</option>
                 <option value="M2">M2</option>
             </select>
-            <label for="matricule">matricule :</label>
-            <input type="text" id="matricule" name="matricule" placeholder="matricule" required>
+            
+            <!-- Le champ matricule est généré automatiquement, donc pas besoin de champ ici -->
             
             <button type="submit">Ajouter</button>
         </form>
 
-        <?php if (isset($error)): ?>
-            <p class="error"><?= htmlspecialchars($error) ?></p>
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <p class="error"><?= htmlspecialchars($_SESSION['error_message']) ?></p>
+            <?php unset($_SESSION['error_message']); ?>
         <?php endif; ?>
+        
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <p class="success"><?= htmlspecialchars($_SESSION['success_message']) ?></p>
+            <?php unset($_SESSION['success_message']); ?>
+        <?php endif; ?>
+
         <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
     </div>
 </body>
