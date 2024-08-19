@@ -97,7 +97,7 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
   
                     <a href="add_note.php?id=<?= $student['id'] ?>" class="btn-notes">Donner des notes</a>
                    
-                    <a href="add_absence.php?id=<?= $student['id'] ?>" class="btn-absence">Marquer une absence</a>
+                    
         
 
             

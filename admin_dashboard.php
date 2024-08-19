@@ -35,8 +35,11 @@ $nom = $_SESSION['nom'];
             <li><a href="inscrire_student.php">Inscrire un étudiant</a></li>
             <li><a href="add_admin.php">Ajouter un administrateur</a></li>
             <li><a href="list_etudiants.php">Lister par ordre de mérite</a></li>
+<<<<<<< HEAD
 >>>>>>> 70eb2a0a858fa3a31671c74a2f0cda2aaf873238
             <li><a href="absence_list.php">Voir les absences</a></li>
+=======
+>>>>>>> 0ad4d354b5ed31de616552af581868d1fb4fdf93
             <li><a href="logout.php" class="logout">Déconnexion</a></li>
         </ul>
     </div>
