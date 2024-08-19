@@ -21,6 +21,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
     $role = $_POST['role'];  // Nouveau champ pour le rôle
 
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "L'adresse email n'est pas valide.";
+    }
+
     // Validation des données
     if (empty($nom) || empty($prenom) || empty($email) || empty($password) || !is_numeric($role)) {
         $error = "Tous les champs doivent être remplis et le rôle doit être un nombre valide.";

@@ -123,7 +123,7 @@ table tr:hover {
 .btn-back {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #00796b;
+    background-color: #e22620ef;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -134,7 +134,7 @@ table tr:hover {
 }
 
 .btn-back:hover {
-    background-color: #004d40;
+    background-color: #c22c12;
 }
 h2,#login{
     text-align: center;
@@ -175,6 +175,14 @@ a[class^="btn-"] {
 
 .btn-unarchive:hover {
     background-color: #388E3C; /* Vert foncé lors du survol */
+}
+
+.btn-supprimer {
+    background-color: #943510; /* ROUGR */
+}
+
+.btn-supprimer:hover {
+    background-color: #a13b0b; /* Vert foncé lors du survol */
 }
 /* Zone de recherche */
 .search-form {

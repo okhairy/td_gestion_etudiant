@@ -19,7 +19,7 @@ $totalCount = count($etudiants);
 foreach ($etudiants as $etudiant) {
     if ($etudiant['Admission'] === 'admis') {
         $admisCount++;
-    } elseif ($etudiant['Admission'] === 'recalé') {
+    } elseif ($etudiant['Admission'] === 'recale') {
         $recaleCount++;
     }
 }

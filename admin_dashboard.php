@@ -21,8 +21,8 @@ if (!isset($_SESSION['admin_id'])) {
         <ul>
             <li><a href="list_student.php">Liste des étudiants archivés et non archivés</a></li>
             <li><a href="admin_list.php">Gérer les administrateurs</a></li>
-            <li><a href="inscrire_student.php">inscrire un etudiant</a></li>
-            <li><a href="add_admin.php">ajouter un administrateur</a></li>
+           
+           
             <li><a href="add_note.php">ajouter des notes</a></li>
             <li><a href="list_etudiants.php" >lister par ordre de merite</a></li>
             <li><a href="add_absence.php">Marquer une absence</a></li>

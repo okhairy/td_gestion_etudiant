@@ -20,7 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $telephone = $_POST['telephone'];
     $niveau = $_POST['niveau'];
-
+    
+   
     // Vérifier l'âge de l'étudiant (doit avoir au moins 18 ans)
     $date_naissance_obj = new DateTime($date_naissance);
     $today = new DateTime('today');

@@ -85,7 +85,8 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
                     <!-- Lien pour modifier -->
                     <a href="edit_student.php?id=<?= $student['id'] ?>" class="btn-modifier">Modifier</a> |
                     <!-- Lien pour archiver -->
-                    <a href="list_student.php?action=archive&id=<?= $student['id'] ?>" class="btn-archiver">Archiver</a>
+                    <a href="list_student.php?action=archive&id=<?= $student['id'] ?>" class="btn-archiver" onclick="return confirm('Êtes-vous sûr de vouloir archiver cet admin ?');">Archiver</a>
+                    <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet admin ?');"class="btn-supprimer" href="list_student.php?action=delete&id=<?= $STUDENT['id'] ?>">Supprimer</a>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -113,11 +114,17 @@ $M2_class = $pdo->query("SELECT *, (COALESCE(noteM1, 0) + COALESCE(noteM2, 0) + 
                 <td><?= htmlspecialchars($archived_student['matricule']) ?></td>
                 <td>
                     <!-- Lien pour désarchiver l'étudiant -->
+                    <a href="edit_student.php?id=<?= $archived_student['id'] ?>" class="btn-modifier">Modifier</a>
                     <a class="btn-unarchive" href="list_student.php?action=unarchive&id=<?= $archived_student['id'] ?>">Désarchiver</a>
+                    <a class="btn-supprimer" href="list_student.php?action=delete&id=<?= $archived_student['id'] ?>">Supprimer</a>
+                    </td>
                 </td>
             </tr>
             <?php endforeach; ?>
         </table>
+        <ul>
+        <li><a href="inscrire_student.php">ajouter  un etudiant</a></li>
+       </ul>
     </div>
 
     <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
