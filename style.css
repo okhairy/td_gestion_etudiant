@@ -124,7 +124,7 @@ table tr:hover {
 .btn-back {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #e22620ef;
+    background-color: #00796b;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -135,7 +135,7 @@ table tr:hover {
 }
 
 .btn-back:hover {
-    background-color: #c22c12;
+    background-color: #004d40;
 }
 h2,#login{
     text-align: center;
@@ -177,6 +177,23 @@ a[class^="btn-"] {
 
 .btn-unarchive:hover {
     background-color: #388E3C; /* Vert foncé lors du survol */
+}
+.btn-notes {
+    background-color:  #00ced1;
+}
+
+
+.btn-notes:hover {
+    background-color: #08d4e2;
+}
+
+
+.btn-absence{
+    background-color:   #ff69b4;
+}
+
+.btn-absence:hover {
+    background-color: pink;
 }
 /* Zone de recherche */
 .search-form {
@@ -228,6 +245,5 @@ a[class^="btn-"] {
     cursor: pointer;
     font-size: 18px;
 }
-
 
 
