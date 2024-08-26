@@ -34,18 +34,13 @@ foreach ($etudiants as $etudiant) {
 </head>
 <body>
     <h2>Liste des étudiants de <?= htmlspecialchars($niveau) ?></h2>
-    
-    <form method="GET" action="">
-        <label for="niveau">Sélectionnez le niveau :</label>
-        <select name="niveau" id="niveau" onchange="this.form.submit()">
-            <option value="L1" <?= $niveau === 'L1' ? 'selected' : '' ?>>L1</option>
-            <option value="L2" <?= $niveau === 'L2' ? 'selected' : '' ?>>L2</option>
-            <option value="L3" <?= $niveau === 'L3' ? 'selected' : '' ?>>L3</option>
-            <option value="M1" <?= $niveau === 'M1' ? 'selected' : '' ?>>M1</option>
-            <option value="M2" <?= $niveau === 'M2' ? 'selected' : '' ?>>M2</option>
-        </select>
-    </form>
-    
+
+    <div class="button-group">
+        <?php foreach ($niveaux as $niv): ?>
+            <a href="?niveau=<?= $niv ?>" class="btn-level <?= $niveau === $niv ? 'active' : '' ?>">Niveau <?= $niv ?></a>
+        <?php endforeach; ?>
+    </div>
+
     <div class="list-container">
         <table>
             <thead>
@@ -58,6 +53,7 @@ foreach ($etudiants as $etudiant) {
                     <th>Module 4</th>
                     <th>Moyenne</th>
                     <th>Décision du jury</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -71,6 +67,7 @@ foreach ($etudiants as $etudiant) {
                         <td><?= htmlspecialchars($etudiant['noteM4']) ?></td>
                         <td><?= htmlspecialchars($etudiant['moyenne']) ?></td>
                         <td><?= htmlspecialchars($etudiant['Admission']) ?></td>
+                        <td><a href="add_note.php?id=<?= $etudiant['id']?>">ajouter notes</a></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

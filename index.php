@@ -14,6 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION['admin_id'] = $admin['id'];
         $_SESSION['prenom'] = $admin['prenom'];
         $_SESSION['nom'] = $admin['nom'];
+        $_SESSION['role'] = $admin['role'];
         header('Location: admin_dashboard.php');
         exit();
     } else {
@@ -31,22 +32,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="login-container">
     <h2>Connexion Administrateur</h2>
     <?php if (isset($error)) echo "<p>$error</p>"; ?>
     <form id="login" action="index.php" method="POST">
         <label>Email :</label>
         <input type="email" name="email" required>
-
-        <div>
-            <label>Mot de passe :</label>
-            <input type="password" id="password" name="password" required>
-            
-           
+        <label for="password">Mot de passe :</label>
+        <div class="password-container">
+            <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
+            <button type="button" id="togglePassword" class="btn-toggle">
+               
+            </button>
         </div>
 
         <button type="submit">Se connecter</button>
     </form>
-
+    </div>
     <script src="script.js"></script>
+    <!--   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script> -->
+  
+    </form>
+  
+
 </body>
 </html>

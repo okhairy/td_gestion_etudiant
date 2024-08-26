@@ -10,7 +10,6 @@ $stmt = $pdo->prepare("SELECT * FROM administrateurs");
 $stmt->execute();
 $admins = $stmt->fetchAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -19,6 +18,7 @@ $admins = $stmt->fetchAll();
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <button onclick="window.location.href='add_admin.php'" class="btn-ajouter">Ajouter un administrateur</button>
     <h2>Liste des administrateurs</h2>
     <table>
         <tr>
@@ -33,23 +33,15 @@ $admins = $stmt->fetchAll();
                 <td><?= htmlspecialchars($admin['prenom']) ?></td>
                 <td><?= htmlspecialchars($admin['email']) ?></td>
                 <td>
-<<<<<<< HEAD
-                    <a href="edit_admin.php?id=<?= $admin['id'] ?> " class="btn-modifier">Modifier</a>
-                    <a href="delete.php?id=<?= $admin['id'] ?>"class="btn-supprimer">Supprimer</a>
-=======
                     <a href="edit_admin.php?id=<?= $admin['id'] ?>" class="btn-modifier">Modifier</a>
                     <a href="delete.php?id=<?= $admin['id'] ?>&type=admin" 
              onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet administrateur ?');" class="btn-supprimer">Supprimer</a>
-
->>>>>>> 70eb2a0a858fa3a31671c74a2f0cda2aaf873238
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
-    <ul>
-    <li><a href="add_admin.php">ajouter un administrateur</a></li>
-    </ul>
     
     <button onclick="window.location.href='admin_dashboard.php'" class="btn-back">Retour au tableau de bord</button>
 </body>
 </html>
+

@@ -34,7 +34,7 @@ if (isset($_GET['id'])) {
             'id' => $id
         ]);
 
-        header('Location: list_student.php');
+        header('Location: list_students.php');
         exit();
     }
 } else {
@@ -69,6 +69,7 @@ if (isset($_GET['id'])) {
             <option value="M2" <?= $student['niveau'] == 'M2' ? 'selected' : '' ?>>M2</option>
         </select>
         <button type="submit">Enregistrer</button>
+        <button type="button" class="btn-cancel" onclick="window.location.href='list_students.php';">Annuler</button>
     </form>
 </body>
 </html>

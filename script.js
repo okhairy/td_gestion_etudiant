@@ -19,5 +19,13 @@ function redirectTo(url) {
             confirmPasswordField.setAttribute('type', type);
             this.textContent = type === 'password' ? '👁️‍🗨️' : '👁️';
         });
+    document.addEventListener('DOMContentLoaded', function () {
+        const dateNaissanceInput = document.getElementById('date_naissance');
+        const maxDate = new Date(2006, 11, 31); // Date maximale : 31 décembre 2006
+        dateNaissanceInput.max = maxDate.toISOString().split('T')[0];
+    });
+
+
+ 
 
 

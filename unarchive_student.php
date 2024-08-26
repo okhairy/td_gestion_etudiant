@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
     $stmt = $pdo->prepare("UPDATE etudiants SET archived = 0 WHERE id = :id");
     $stmt->execute(['id' => $id]);
 
-    header('Location: list_student.php');
+    header('Location: list_students.php');
     exit();
 } else {
     die("ID d'étudiant non spécifié.");

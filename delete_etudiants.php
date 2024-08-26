@@ -15,7 +15,7 @@ if (isset($_GET['id'])) {
     $stmt->execute(['id' => $id]);
 
     // Rediriger après la suppression
-    header('Location: list_student.php');
+    header('Location: list_students.php');
     exit();
 } else {
     die("ID non spécifié.");
